@@ -60,7 +60,7 @@ async function humidity(req, res) {
     }
     else {
         let url = `api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`
-        await rp.get(url, function (err, res, body) {
+        await rp(url, function (err, res, body) {
             let weather = JSON.parse(body);
             console.log("weather is: ", weather)
             if (err) {
