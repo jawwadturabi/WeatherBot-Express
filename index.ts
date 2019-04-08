@@ -54,8 +54,8 @@ async function humidity(req, res) {
     if (req.body.queryResult.parameters.city) {
         cityName = req.body.queryResult.parameters.city
     }
-    else if (req.body.queryResult.outputContexts[1].parameters.abccity) {
-        cityName = req.body.queryResult.outputContexts[1].parameters.abccity
+    else if (req.body.queryResult.outputContexts[0].parameters.abccity) {
+        cityName = req.body.queryResult.outputContexts[0].parameters.abccity
     }
     else {
         res.send({
@@ -99,8 +99,8 @@ async function rain(req, res) {
     if (req.body.queryResult.parameters.city) {
         cityName = req.body.queryResult.parameters.city
     }
-    else if (req.body.queryResult.outputContexts[1].parameters.abccity) {
-        cityName = req.body.queryResult.outputContexts[1].parameters.abccity
+    else if (req.body.queryResult.outputContexts[0].parameters.abccity) {
+        cityName = req.body.queryResult.outputContexts[0].parameters.abccity
     }
     else {
         res.send({
@@ -145,8 +145,8 @@ async function temp(req, res) {
     if (req.body.queryResult.parameters.city) {
         cityName = req.body.queryResult.parameters.city
     }
-    else if (req.body.queryResult.outputContexts[1].parameters.abccity) {
-        cityName = req.body.queryResult.outputContexts[1].parameters.abccity
+    else if (req.body.queryResult.outputContexts[0].parameters.abccity) {
+        cityName = req.body.queryResult.outputContexts[0].parameters.abccity
     }
     else {
         res.send({
@@ -190,8 +190,8 @@ async function weather(req, res) {
     if (req.body.queryResult.parameters.city) {
         cityName = req.body.queryResult.parameters.city
     }
-    else if (req.body.queryResult.outputContexts[1].parameters.abccity) {
-        cityName = req.body.queryResult.outputContexts[1].parameters.abccity
+    else if (req.body.queryResult.outputContexts[0].parameters.abccity) {
+        cityName = req.body.queryResult.outputContexts[0].parameters.abccity
     }
     else {
         res.send({
