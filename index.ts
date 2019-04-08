@@ -8,7 +8,7 @@ process.env.DEBUG = "dialogflow:debug"
 app.post("/webhook", function (request, response, next) {
 
     var intent = request.body.queryResult.intent.displayName
-    var cityName = request.body.queryResult.parmeters.geo-city
+    var cityName = request.body.queryResult.parmeters.city
     switch (intent) {
         case 'Default Welcome Intent':
 
