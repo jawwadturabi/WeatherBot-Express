@@ -36,27 +36,33 @@ app.post("/webhook", function (request, response, next) {
 
             break
     }
+
+})
+
+
+
     function welcome(req, res) {
-        response.send({
+        res.send({
 
             fulfillmentText: `Hello! I am your Weather Assistant`
         })
     }
 
     function humidity(req, res) {
-        if (request.body.queryResult.parameters.city == null) {
-            response.send({
+        var cityName=req.body.queryResult.parameters.city
+        if (req.body.queryResult.parameters.city == null) {
+            res.send({
 
                 fulfillmentText: `Please enter the city name`
             })
         }
         else {
             var url = `api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`
-            _request(url, function (err, response, body) {
+            _request(url, function (err, res, body) {
                 if (err) {
                     console.log('error:', err);
                 } else {
-                    response.send({
+                    res.send({
                         fulfillmentText: `The humidity in ${cityName} is ${body.weather.main.humidity} !`
                     })
                     console.log(body.weather)
@@ -66,7 +72,7 @@ app.post("/webhook", function (request, response, next) {
     }
 
     function rain(req, res) {
-        response.send({
+        res.send({
 
             fulfillmentText: `Hello! I am your Weather Assistant`
         })
@@ -75,11 +81,11 @@ app.post("/webhook", function (request, response, next) {
     function temp(req, res) {
         var url = `api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`
 
-        request(url, function (err, response, body) {
+        _request(url, function (err, res, body) {
             if (err) {
                 console.log('error:', err);
             } else {
-                response.send({
+                res.send({
                     fulfillmentText: `The temperature in ${cityName} is ${body.weather.main.temp} !`
                 })
                 console.log(body.weather)
@@ -90,11 +96,11 @@ app.post("/webhook", function (request, response, next) {
 
     function weather(req, res) {
         var url = `api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`
-        request(url, function (err, response, body) {
+        _request(url, function (err, res, body) {
             if (err) {
                 console.log('error:', err);
             } else {
-                response.send({
+                res.send({
                     fulfillmentText: `Weather is ${body.weather}`
                 })
                 console.log(body.weather)
@@ -103,7 +109,6 @@ app.post("/webhook", function (request, response, next) {
 
     }
 
-})
 app.listen(process.env.PORT || 8088, function(){
     console.log("server is running")
 })
