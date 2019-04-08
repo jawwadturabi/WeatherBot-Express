@@ -81,8 +81,9 @@ async function humidity(req, res) {
                         }
                       ],
                     fulfillmentText: `The humidity in ${cityName} is ${weather.main.humidity}% !`
+                
                 })
-                console.log(body.weather)
+            return
             }
         })
     }
@@ -97,7 +98,7 @@ function rain(req, res) {
 }
 
 function temp(req, res) {
-    var cityN_ame = req.body.queryResult.outputcontext.parameters.city
+    var cityN_ame = req.body.queryResult.parameters.city
     var url = `https://api.openweathermap.org/data/2.5/weather?q=${cityN_ame}&units=metric&appid=${apiKey}`
     if (!req.body.queryResult.parameters.city) {
         res.send({
