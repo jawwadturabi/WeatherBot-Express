@@ -60,8 +60,12 @@ async function humidity(req, res) {
     else {
         var url = `api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`
     await    _request(url, function (err, res, body) {
+            console.log("Body is : " ,body)
             if (err) {
                 console.log('error is:', err);
+                res.send({
+                    fulfillmentText: `error while calling api`
+                })
             } else {
                 res.send({
                     fulfillmentText: `The humidity in ${cityName} is ${body.weather.main.humidity} !`
