@@ -52,7 +52,7 @@ async function humidity(req, res) {
     console.log("context are: ", req.body.queryResult.outputContexts)
     var cityName;
     var abcContext = getContext(req.body.queryResult.outputContexts, "abc")
-    console.log("return is :" ,abcContext)
+    console.log("return is :", abcContext)
     if (req.body.queryResult.parameters.city) {
         cityName = req.body.queryResult.parameters.city
     }
@@ -234,13 +234,19 @@ async function weather(req, res) {
 }
 
 function getContext(outputContexts, name) {
-    for (var i = 0; i < outputContexts.length; i++) {
-        var temp = outputContexts[i].name.split("/")
-        if (temp[temp.length - 1] == name) {
-            return outputContexts[i]   
+    if (!outputContexts) {
+        return
+    }
+    else {
+        for (var i = 0; i < outputContexts.length; i++) {
+            var temp = outputContexts[i].name.split("/")
+            if (temp[temp.length - 1] == name) {
+                return outputContexts[i]
+            }
+
         }
     }
-    console.log("context is",outputContexts)
+    console.log("context is", outputContexts)
 
 }
 app.listen(process.env.PORT || 8088, function () {
