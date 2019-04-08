@@ -76,6 +76,7 @@ async function humidity(req, res) {
             }
         })
     }
+    return
 }
 
 function rain(req, res) {
