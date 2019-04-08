@@ -60,7 +60,7 @@ async function humidity(req, res) {
     }
     else {
         let url = `api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`
-        await rp(url, function (err, res, body) {
+        await rp.get(url, function (err, res, body) {
             let weather = JSON.parse(body);
             console.log("weather is: ", weather)
             if (err) {
@@ -89,7 +89,7 @@ function temp(req, res) {
     var cityName = req.body.queryResult.parameters.city
     var url = `api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`
 
-    rp(url, function (err, res, body) {
+    rp.get(url, function (err, res, body) {
         if (err) {
             console.log('error:', err);
         } else {
@@ -105,7 +105,7 @@ function temp(req, res) {
 function weather(req, res) {
     var cityName = req.body.queryResult.parameters.city
     var url = `api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`
-    rp(url, function (err, res, body) {
+    rp.get(url, function (err, res, body) {
         if (err) {
             console.log('error:', err);
         } else {
