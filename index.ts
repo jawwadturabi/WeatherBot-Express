@@ -70,7 +70,7 @@ async function humidity(req, res) {
                 })
             } else {
                 res.send({
-                    fulfillmentText: `The humidity in ${cityName} is ${weather.main.humidity} !`
+                    fulfillmentText: `The humidity in ${cityName} is ${weather.main.humidity}% !`
                 })
                 console.log(body.weather)
             }
@@ -97,12 +97,14 @@ function temp(req, res) {
 
     }
     else {
+        
         rp.get(url, function (err, _res, body) {
+            let weather = JSON.parse(body);
             if (err) {
                 console.log('error:', err);
             } else {
                 res.send({
-                    fulfillmentText: `The temperature in ${cityName} is ${body.main.temp} !`
+                    fulfillmentText: `The temperature in ${cityName} is ${weather.main.temp} !`
                 })
                 console.log(body.weather)
             }
