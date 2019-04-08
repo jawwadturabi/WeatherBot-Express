@@ -71,19 +71,19 @@ async function humidity(req, res) {
                 })
             } else {
                 res.send({
-                    outputContexts:[
+                    outputContexts: [
                         {
-                          "name": `${session}/context/memory`,
-                          "lifespanCount": 5,
-                          "parameters": {
-                            "city": cityName
-                          }
+                            "name": `${session}/context/memory`,
+                            "lifespanCount": 5,
+                            "parameters": {
+                                "city": cityName
+                            }
                         }
-                      ],
+                    ],
                     fulfillmentText: `The humidity in ${cityName} is ${weather.main.humidity}% !`
-                
+
                 })
-            return
+                return
             }
         })
     }
@@ -108,7 +108,7 @@ function temp(req, res) {
 
     }
     else {
-        
+
         rp.get(url, function (err, _res, body) {
             let weather = JSON.parse(body);
             if (err) {
