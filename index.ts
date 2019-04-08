@@ -42,7 +42,7 @@ app.post("/webhook", function (request, response, next) {
 
 
 function welcome(req, res) {
-    
+    var cityName = req.body.queryResult.parameters.city
      console.log("city is",cityName)
     res.send({
 
