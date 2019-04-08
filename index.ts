@@ -3,6 +3,7 @@ var apiKey = '4970e4f266675063af77ad454f45ebd6';
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express().use(bodyParser.json());
+var rp = require('request-promise');
 process.env.DEBUG = "dialogflow:debug"
 
 app.post("/webhook", function (request, response, next) {
@@ -42,14 +43,14 @@ function welcome(req, res) {
     res.send({
 
         fulfillmentText: `Hello! I am your Weather Assistant`,
-        
+
     })
     return
 }
 
 async function humidity(req, res) {
     var cityName = req.body.queryResult.parameters.city
-    console.log("city is",cityName)
+    console.log("city is", cityName)
     if (!req.body.queryResult.parameters.city) {
         res.send({
 
@@ -59,9 +60,9 @@ async function humidity(req, res) {
     }
     else {
         let url = `api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`
-    await    rq(url, function (err, res, body) {
-        let weather = JSON.parse(body);
-        console.log("weather is: " ,weather)
+        await rp(url, function (err, res, body) {
+            let weather = JSON.parse(body);
+            console.log("weather is: ", weather)
             if (err) {
                 console.log('error is:', err);
                 res.send({
@@ -88,7 +89,7 @@ function temp(req, res) {
     var cityName = req.body.queryResult.parameters.city
     var url = `api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`
 
-    rq(url, function (err, res, body) {
+    rp(url, function (err, res, body) {
         if (err) {
             console.log('error:', err);
         } else {
@@ -104,7 +105,7 @@ function temp(req, res) {
 function weather(req, res) {
     var cityName = req.body.queryResult.parameters.city
     var url = `api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`
-    rq(url, function (err, res, body) {
+    rp(url, function (err, res, body) {
         if (err) {
             console.log('error:', err);
         } else {
