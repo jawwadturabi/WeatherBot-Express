@@ -225,7 +225,7 @@ async function weather(req, res) {
                         }
                     }
                 ],
-                fulfillmentText: `The weather in ${cityName} is ${weather.main} and ${weather.description} !`
+                fulfillmentText: `The weather in ${cityName} is ${weather.weather.main} and ${weather.weather.description} !`
 
             })
             return
