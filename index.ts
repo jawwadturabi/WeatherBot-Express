@@ -38,12 +38,7 @@ app.post("/webhook", function (request, response, next) {
     }
 
 })
-
-
-
 function welcome(req, res) {
-    var cityName = req.body.queryResult.parameters.city
-     console.log("city is",cityName)
     res.send({
 
         fulfillmentText: `Hello! I am your Weather Assistant`,
@@ -52,7 +47,7 @@ function welcome(req, res) {
     return
 }
 
-function humidity(req, res) {
+async function humidity(req, res) {
     var cityName = req.body.queryResult.parameters.city
     console.log("city is",cityName)
     if (!req.body.queryResult.parameters.city) {
@@ -63,11 +58,10 @@ function humidity(req, res) {
         return
     }
     else {
-        console.log("city is",cityName)
         var url = `api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`
-        _request(url, function (err, res, body) {
+    await    _request(url, function (err, res, body) {
             if (err) {
-                console.log('error:', err);
+                console.log('error is:', err);
             } else {
                 res.send({
                     fulfillmentText: `The humidity in ${cityName} is ${body.weather.main.humidity} !`
