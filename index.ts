@@ -51,7 +51,7 @@ function welcome(req, res) {
 async function humidity(req, res) {
     console.log("context are: ", req.body.queryResult.outputContexts)
     var cityName;
-    var abcContext: any = getContext(req.body.queryResult.outputContexts, "abc")
+    var abcContext = getContext(req.body.queryResult.outputContexts, "abc")
     console.log("return is :" ,abcContext)
     if (req.body.queryResult.parameters.city) {
         cityName = req.body.queryResult.parameters.city
@@ -98,7 +98,7 @@ async function rain(req, res) {
 
     console.log("context are: ", req.body.queryResult.outputContexts)
     var cityName;
-    var abcContext: any = getContext(req.body.queryResult.outputContexts, "abc")
+    var abcContext = getContext(req.body.queryResult.outputContexts, "abc")
     if (req.body.queryResult.parameters.city) {
         cityName = req.body.queryResult.parameters.city
     }
@@ -145,7 +145,7 @@ async function rain(req, res) {
 async function temp(req, res) {
     console.log("context are: ", req.body.queryResult.outputContexts)
     var cityName;
-    var abcContext: any = getContext(req.body.queryResult.outputContexts, "abc")
+    var abcContext = getContext(req.body.queryResult.outputContexts, "abc")
     if (req.body.queryResult.parameters.city) {
         cityName = req.body.queryResult.parameters.city
     }
@@ -191,7 +191,7 @@ async function temp(req, res) {
 async function weather(req, res) {
     console.log("context are: ", req.body.queryResult.outputContexts)
     var cityName;
-    var abcContext: any = getContext(req.body.queryResult.outputContexts, "abc")
+    var abcContext = getContext(req.body.queryResult.outputContexts, "abc")
     if (req.body.queryResult.parameters.city) {
         cityName = req.body.queryResult.parameters.city
     }
