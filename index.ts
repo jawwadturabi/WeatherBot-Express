@@ -41,76 +41,81 @@ app.post("/webhook", function (request, response, next) {
 
 
 
-    function welcome(req, res) {
+function welcome(req, res) {
+    res.send({
+
+        fulfillmentText: `Hello! I am your Weather Assistant`,
+        
+    })
+    return
+}
+
+function humidity(req, res) {
+    var cityName = req.body.queryResult.parameters.city
+    console.log("city is",cityName)
+    if (req.body.queryResult.parameters.city == undefined) {
         res.send({
 
-            fulfillmentText: `Hello! I am your Weather Assistant`
+            fulfillmentText: `Please enter the city name`
+        })
+        return
+    }
+    else {
+        console.log("city is",cityName)
+        var url = `api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`
+        _request(url, function (err, res, body) {
+            if (err) {
+                console.log('error:', err);
+            } else {
+                res.send({
+                    fulfillmentText: `The humidity in ${cityName} is ${body.weather.main.humidity} !`
+                })
+                console.log(body.weather)
+            }
         })
     }
+}
 
-    function humidity(req, res) {
-        var cityName=req.body.queryResult.parameters.city
-        if (req.body.queryResult.parameters.city == null) {
+function rain(req, res) {
+    res.send({
+
+        fulfillmentText: `Hello! I am your Weather Assistant`
+    })
+}
+
+function temp(req, res) {
+    var cityName = req.body.queryResult.parameters.city
+    var url = `api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`
+
+    _request(url, function (err, res, body) {
+        if (err) {
+            console.log('error:', err);
+        } else {
             res.send({
-
-                fulfillmentText: `Please enter the city name`
+                fulfillmentText: `The temperature in ${cityName} is ${body.weather.main.temp} !`
             })
+            console.log(body.weather)
         }
-        else {
-            var url = `api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`
-            _request(url, function (err, res, body) {
-                if (err) {
-                    console.log('error:', err);
-                } else {
-                    res.send({
-                        fulfillmentText: `The humidity in ${cityName} is ${body.weather.main.humidity} !`
-                    })
-                    console.log(body.weather)
-                }
+    }
+    )
+}
+
+function weather(req, res) {
+    var cityName = req.body.queryResult.parameters.city
+    var url = `api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`
+    _request(url, function (err, res, body) {
+        if (err) {
+            console.log('error:', err);
+        } else {
+            res.send({
+                fulfillmentText: `Weather is ${body.weather}`
             })
+            console.log(body.weather)
         }
-    }
+    })
 
-    function rain(req, res) {
-        res.send({
+}
 
-            fulfillmentText: `Hello! I am your Weather Assistant`
-        })
-    }
-
-    function temp(req, res) {
-        var cityName=req.body.queryResult.parameters.city
-        var url = `api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`
-
-        _request(url, function (err, res, body) {
-            if (err) {
-                console.log('error:', err);
-            } else {
-                res.send({
-                    fulfillmentText: `The temperature in ${cityName} is ${body.weather.main.temp} !`
-                })
-                console.log(body.weather)
-            }
-        }
-        )
-    }
-
-    function weather(req, res) {
-        var cityName=req.body.queryResult.parameters.city
-        var url = `api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`
-        _request(url, function (err, res, body) {
-            if (err) {
-                console.log('error:', err);
-            } else {
-                res.send({
-                    fulfillmentText: `Weather is ${body.weather}`
-                })
-                console.log(body.weather)
-            }
-        })
-
-    }
-
-app.listen(process.env.PORT || 8088, function(){
+app.listen(process.env.PORT || 8088, function () {
     console.log("server is running")
 })
