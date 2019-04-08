@@ -77,7 +77,7 @@ async function humidity(req, res) {
             res.send({
                 outputContexts: [
                     {
-                        "name": `${session}/contexts/memory`,
+                        "name": `${session}/contexts/abc`,
                         "lifespanCount": 5,
                         "parameters": {
                             "city": cityName
