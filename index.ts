@@ -88,7 +88,7 @@ function rain(req, res) {
 
 function temp(req, res) {
     var cityName = req.body.queryResult.parameters.city
-    var url = `api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`
+    var url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`
     if (!req.body.queryResult.parameters.city) {
         res.send({
 
