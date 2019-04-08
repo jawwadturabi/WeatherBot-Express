@@ -55,7 +55,7 @@ function welcome(req, res) {
 function humidity(req, res) {
     var cityName = req.body.queryResult.parameters.city
     console.log("city is",cityName)
-    if (req.body.queryResult.parameters.city == undefined) {
+    if (!req.body.queryResult.parameters.city) {
         res.send({
 
             fulfillmentText: `Please enter the city name`
