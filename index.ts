@@ -49,13 +49,14 @@ function welcome(req, res) {
 }
 
 async function humidity(req, res) {
-    console.log("context are: ",req.body.queryResult.outputContexts)
+    console.log("context are: ", req.body.queryResult.outputContexts)
     var cityName;
+    var abcContext: any = getContext(req.body.queryResult.outputContexts, "abc")
     if (req.body.queryResult.parameters.city) {
         cityName = req.body.queryResult.parameters.city
     }
-    else if (req.body.queryResult.outputContexts[0].parameters.abccity) {
-        cityName = req.body.queryResult.outputContexts[0].parameters.abccity
+    else if (abcContext.parameters.abccity) {
+        cityName = abcContext.parameters.abccity
     }
     else {
         res.send({
@@ -93,14 +94,15 @@ async function humidity(req, res) {
 }
 
 async function rain(req, res) {
-    
-    console.log("context are: ",req.body.queryResult.outputContexts)
+
+    console.log("context are: ", req.body.queryResult.outputContexts)
     var cityName;
+    var abcContext: any = getContext(req.body.queryResult.outputContexts, "abc")
     if (req.body.queryResult.parameters.city) {
         cityName = req.body.queryResult.parameters.city
     }
-    else if (req.body.queryResult.outputContexts[0].parameters.abccity) {
-        cityName = req.body.queryResult.outputContexts[0].parameters.abccity
+    else if (abcContext.parameters.abccity) {
+        cityName = abcContext.parameters.abccity
     }
     else {
         res.send({
@@ -130,7 +132,7 @@ async function rain(req, res) {
                         }
                     }
                 ],
-                fulfillmentText: `The rain in ${cityName} ${(weather.rain)?"is"+weather.rain["1h"]+"mm":" is clear"} !`
+                fulfillmentText: `The rain in ${cityName} ${(weather.rain) ? "is" + weather.rain["1h"] + "mm" : " is clear"} !`
 
             })
             return
@@ -140,13 +142,14 @@ async function rain(req, res) {
 
 
 async function temp(req, res) {
-    console.log("context are: ",req.body.queryResult.outputContexts)
+    console.log("context are: ", req.body.queryResult.outputContexts)
     var cityName;
+    var abcContext: any = getContext(req.body.queryResult.outputContexts, "abc")
     if (req.body.queryResult.parameters.city) {
         cityName = req.body.queryResult.parameters.city
     }
-    else if (req.body.queryResult.outputContexts[0].parameters.abccity) {
-        cityName = req.body.queryResult.outputContexts[0].parameters.abccity
+    else if (abcContext.parameters.abccity) {
+        cityName = abcContext.parameters.abccity
     }
     else {
         res.send({
@@ -185,13 +188,14 @@ async function temp(req, res) {
 
 
 async function weather(req, res) {
-    console.log("context are: ",req.body.queryResult.outputContexts)
+    console.log("context are: ", req.body.queryResult.outputContexts)
     var cityName;
+    var abcContext: any = getContext(req.body.queryResult.outputContexts, "abc")
     if (req.body.queryResult.parameters.city) {
         cityName = req.body.queryResult.parameters.city
     }
-    else if (req.body.queryResult.outputContexts[0].parameters.abccity) {
-        cityName = req.body.queryResult.outputContexts[0].parameters.abccity
+    else if (abcContext.parameters.abccity) {
+        cityName = abcContext.parameters.abccity
     }
     else {
         res.send({
@@ -228,6 +232,17 @@ async function weather(req, res) {
     })
 }
 
+function getContext(outputContexts, name) {
+    for (var i = 0; i < outputContexts.length; i++) {
+        var temp = outputContexts[i].name.split("/")
+        if (temp[temp.length - 1] == name) {
+            outputContexts[i]
+            return
+        }
+    }
+
+
+}
 app.listen(process.env.PORT || 8088, function () {
     console.log("server is running")
 })
