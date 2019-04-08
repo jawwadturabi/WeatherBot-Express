@@ -53,8 +53,8 @@ async function humidity(req, res) {
     if (req.body.queryResult.parameters.city) {
         cityName = req.body.queryResult.parameters.city
     }
-    else if (req.body.queryResult.outputContexts[0].parameters.city) {
-        cityName = req.body.queryResult.outputContexts[0].parameters.city
+    else if (req.body.queryResult.outputContexts[1].parameters.city) {
+        cityName = req.body.queryResult.outputContexts[1].parameters.city
     }
     else {
         res.send({
@@ -90,8 +90,6 @@ async function humidity(req, res) {
         }
     })
 }
-
-
 
 function rain(req, res) {
     res.send({
