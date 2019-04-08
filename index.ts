@@ -116,7 +116,7 @@ function temp(req, res) {
 function weather(req, res) {
     var cityName = req.body.queryResult.parameters.city
     var url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`
-    rp.get(url, function (err, res, body) {
+    rp.get(url, function (err, _res, body) {
         if (err) {
             console.log('error:', err);
             res.send({
