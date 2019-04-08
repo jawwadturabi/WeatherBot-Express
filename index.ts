@@ -61,7 +61,7 @@ async function humidity(req, res) {
     else {
         let url = `api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`
         await rq(url, function (err, res, body) {
-            let weather = JSON.parse(body);
+            // let weather = JSON.parse(body);
             console.log("weather is: ", weather)
             if (err) {
                 console.log('error is:', err);
