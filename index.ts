@@ -1,10 +1,9 @@
-'use strict';
 var request = require('request');
 var apiKey = '4970e4f266675063af77ad454f45ebd6';
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express().use(bodyParser.json());
-
+process.env.DEBUG = "dialogflow:debug"
 
 app.post("/webhook", function (request, response, next) {
 
@@ -106,6 +105,6 @@ app.post("/webhook", function (request, response, next) {
     }
 
 })
-app.listen(process.env.PORT || 3000, function(){
+app.listen(process.env.PORT || 8088, function(){
     console.log("server is running")
 })
