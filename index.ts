@@ -80,7 +80,7 @@ async function humidity(req, res) {
                         "name": `${session}/contexts/abc`,
                         "lifespanCount": 5,
                         "parameters": {
-                            "city": cityName
+                            "abccity": cityName
                         }
                     }
                 ],
