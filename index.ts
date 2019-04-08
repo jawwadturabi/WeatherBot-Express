@@ -79,6 +79,7 @@ app.post("/webhook", function (request, response, next) {
     }
 
     function temp(req, res) {
+        var cityName=req.body.queryResult.parameters.city
         var url = `api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`
 
         _request(url, function (err, res, body) {
@@ -95,6 +96,7 @@ app.post("/webhook", function (request, response, next) {
     }
 
     function weather(req, res) {
+        var cityName=req.body.queryResult.parameters.city
         var url = `api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`
         _request(url, function (err, res, body) {
             if (err) {
