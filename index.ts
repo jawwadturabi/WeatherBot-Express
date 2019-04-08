@@ -44,7 +44,7 @@ app.post("/webhook", function (request, response, next) {
     }
 
     function humidity(req, res) {
-        if (request.body.queryResult.parmeters.city == null) {
+        if (request.body.queryResult.parameters.city == null) {
             response.send({
 
                 fulfillmentText: `Please enter the city name`
