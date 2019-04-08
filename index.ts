@@ -73,7 +73,7 @@ async function humidity(req, res) {
                 res.send({
                     outputContexts: [
                         {
-                            "name": `${session}/context/memory`,
+                            "name": `${session}/contexts/memory`,
                             "lifespanCount": 5,
                             "parameters": {
                                 "city": cityName
@@ -146,3 +146,16 @@ function weather(req, res) {
 app.listen(process.env.PORT || 8088, function () {
     console.log("server is running")
 })
+var a=
+{
+    "outputContexts": [
+      {
+        "name": "projects/weather-bot-c8880/agent/sessions/619c2437-5e4b-13bc-a595-4c735d2d8a6c/context/memory",
+        "lifespanCount": 5,
+        "parameters": {
+          "city": "Hyderabad"
+        }
+      }
+    ],
+    "fulfillmentText": "The humidity in Hyderabad is 60% !"
+  }
