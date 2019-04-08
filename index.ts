@@ -1,4 +1,4 @@
-var request = require('request');
+var _request = require('request');
 var apiKey = '4970e4f266675063af77ad454f45ebd6';
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -52,8 +52,7 @@ app.post("/webhook", function (request, response, next) {
         }
         else {
             var url = `api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`
-
-            request(url, function (err, response, body) {
+            _request(url, function (err, response, body) {
                 if (err) {
                     console.log('error:', err);
                 } else {
