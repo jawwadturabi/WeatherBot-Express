@@ -70,7 +70,7 @@ async function humidity(req, res) {
                 })
             } else {
                 res.send({
-                    fulfillmentText: `The humidity in ${cityName} is ${body.weather.main.humidity} !`
+                    fulfillmentText: `The humidity in ${cityName} is ${body.main.humidity} !`
                 })
                 console.log(body.weather)
             }
@@ -102,7 +102,7 @@ function temp(req, res) {
                 console.log('error:', err);
             } else {
                 res.send({
-                    fulfillmentText: `The temperature in ${cityName} is ${body.weather.main.temp} !`
+                    fulfillmentText: `The temperature in ${cityName} is ${body.main.temp} !`
                 })
                 console.log(body.weather)
             }
