@@ -104,9 +104,8 @@ function temp(req, res) {
                 console.log('error:', err);
             } else {
                 res.send({
-                    fulfillmentText: `The temperature in ${cityName} is ${weather.main.temp} !`
+                    fulfillmentText: `The temperature in ${cityName} is ${weather.main.temp}°C !`
                 })
-                console.log(body.weather)
             }
         }
         )
@@ -117,6 +116,7 @@ function weather(req, res) {
     var cityName = req.body.queryResult.parameters.city
     var url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`
     rp.get(url, function (err, _res, body) {
+        let weather = JSON.parse(body);
         if (err) {
             console.log('error:', err);
             res.send({
@@ -124,7 +124,7 @@ function weather(req, res) {
             })
         } else {
             res.send({
-                fulfillmentText: `Weather is ${body.weather}`
+                fulfillmentText: `Weather is ${weather}`
             })
             console.log(body.weather)
         }
