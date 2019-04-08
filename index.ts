@@ -42,6 +42,8 @@ app.post("/webhook", function (request, response, next) {
 
 
 function welcome(req, res) {
+    
+     console.log("city is",cityName)
     res.send({
 
         fulfillmentText: `Hello! I am your Weather Assistant`,
