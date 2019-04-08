@@ -49,45 +49,48 @@ function welcome(req, res) {
 }
 
 async function humidity(req, res) {
-    var cityName = req.body.queryResult.parameters.city
-    console.log("city is", cityName)
-    if (!req.body.queryResult.parameters.city) {
-        res.send({
-
-            fulfillmentText: `Please enter the city name`
-        })
-
+    var cityName;
+    if (req.body.queryResult.parameters.city) {
+        cityName = req.body.queryResult.parameters.city
+    }
+    else if (req.body.queryResult.outputContexts[0].parameters.city) {
+        cityName = req.body.queryResult.outputContexts[0].parameters.city
     }
     else {
-        var session = req.body.session
-        let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`
-        await rq(url, function (err, _res, body) {
-            let weather = JSON.parse(body);
-            console.log("weather is: ", weather)
-            if (err) {
-                console.log('error is:', err);
-                res.send({
-                    fulfillmentText: `error while calling api`
-                })
-            } else {
-                res.send({
-                    outputContexts: [
-                        {
-                            "name": `${session}/contexts/memory`,
-                            "lifespanCount": 5,
-                            "parameters": {
-                                "city": cityName
-                            }
-                        }
-                    ],
-                    fulfillmentText: `The humidity in ${cityName} is ${weather.main.humidity}% !`
-
-                })
-                return
-            }
+        res.send({
+            fulfillmentText: `Please enter the city name`
         })
+        return
     }
-    return
+    var session = req.body.session
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`
+    await rq(url, function (err, _res, body) {
+        let weather = JSON.parse(body);
+        console.log("weather is: ", weather)
+        if (err) {
+            console.log('error is:', err);
+            res.send({
+                fulfillmentText: `error while calling api`
+            })
+        } else {
+            res.send({
+                outputContexts: [
+                    {
+                        "name": `${session}/contexts/memory`,
+                        "lifespanCount": 5,
+                        "parameters": {
+                            "city": cityName
+                        }
+                    }
+                ],
+                fulfillmentText: `The humidity in ${cityName} is ${weather.main.humidity}% !`
+
+            })
+            return
+        }
+    })
+}
+return
 }
 
 function rain(req, res) {
@@ -146,16 +149,16 @@ function weather(req, res) {
 app.listen(process.env.PORT || 8088, function () {
     console.log("server is running")
 })
-var a=
+var a =
 {
     "outputContexts": [
-      {
-        "name": "projects/weather-bot-c8880/agent/sessions/619c2437-5e4b-13bc-a595-4c735d2d8a6c/context/memory",
-        "lifespanCount": 5,
-        "parameters": {
-          "city": "Hyderabad"
+        {
+            "name": "projects/weather-bot-c8880/agent/sessions/619c2437-5e4b-13bc-a595-4c735d2d8a6c/context/memory",
+            "lifespanCount": 5,
+            "parameters": {
+                "city": "Hyderabad"
+            }
         }
-      }
     ],
     "fulfillmentText": "The humidity in Hyderabad is 60% !"
-  }
+}
