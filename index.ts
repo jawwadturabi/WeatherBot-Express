@@ -59,6 +59,7 @@ async function humidity(req, res) {
 
     }
     else {
+        var session = req.body.session
         let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`
         await rq(url, function (err, _res, body) {
             let weather = JSON.parse(body);
@@ -70,6 +71,15 @@ async function humidity(req, res) {
                 })
             } else {
                 res.send({
+                    outputContexts:[
+                        {
+                          "name": `${session}/context/memory`,
+                          "lifespanCount": 5,
+                          "parameters": {
+                            "city": cityName
+                          }
+                        }
+                      ],
                     fulfillmentText: `The humidity in ${cityName} is ${weather.main.humidity}% !`
                 })
                 console.log(body.weather)
@@ -87,8 +97,8 @@ function rain(req, res) {
 }
 
 function temp(req, res) {
-    var cityName = req.body.queryResult.outputcontext.parameters.city
-    var url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`
+    var cityN_ame = req.body.queryResult.outputcontext.parameters.city
+    var url = `https://api.openweathermap.org/data/2.5/weather?q=${cityN_ame}&units=metric&appid=${apiKey}`
     if (!req.body.queryResult.parameters.city) {
         res.send({
 
@@ -104,7 +114,7 @@ function temp(req, res) {
                 console.log('error:', err);
             } else {
                 res.send({
-                    fulfillmentText: `The temperature in ${cityName} is ${weather.main.temp}°C !`
+                    fulfillmentText: `The temperature in ${cityN_ame} is ${weather.main.temp}°C !`
                 })
             }
         }
@@ -113,8 +123,8 @@ function temp(req, res) {
 }
 
 function weather(req, res) {
-    var cityName = req.body.queryResult.outputcontext.parameters.city
-    var url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`
+    var city_Name = req.body.queryResult.outputcontext.parameters.city
+    var url = `https://api.openweathermap.org/data/2.5/weather?q=${city_Name}&units=metric&appid=${apiKey}`
     rp.get(url, function (err, _res, body) {
         let weather = JSON.parse(body);
         if (err) {
