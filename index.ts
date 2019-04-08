@@ -87,7 +87,7 @@ function rain(req, res) {
 }
 
 function temp(req, res) {
-    var cityName = req.body.queryResult.parameters.city
+    var cityName = req.body.queryResult.outputcontext.parameters.city
     var url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`
     if (!req.body.queryResult.parameters.city) {
         res.send({
@@ -113,7 +113,7 @@ function temp(req, res) {
 }
 
 function weather(req, res) {
-    var cityName = req.body.queryResult.parameters.city
+    var cityName = req.body.queryResult.outputcontext.parameters.city
     var url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`
     rp.get(url, function (err, _res, body) {
         let weather = JSON.parse(body);
