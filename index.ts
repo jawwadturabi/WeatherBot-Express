@@ -84,7 +84,7 @@ async function humidity(req, res) {
                         }
                     }
                 ],
-                fulfillmentText: `The humidity in ${cityName} is ${weather.main}% !`,
+                fulfillmentText: `The humidity in ${cityName} is ${weather.main.humidity}% !`,
                 "fulfillmentMessages": [
                     {
                     "card": {
