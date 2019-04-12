@@ -34,6 +34,12 @@ app.post("/webhook", function (request, response, next) {
             weather(request, response)
 
             break
+        case 'wind':
+
+            wind(request, response)
+
+            break
+
     }
 
 })
