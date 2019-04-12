@@ -85,7 +85,6 @@ async function humidity(req, res) {
                     }
                 ],
                 fulfillmentText: `The humidity in ${cityName} is ${weather.main.humidity}% !`
-
             })
             return
         }
