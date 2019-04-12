@@ -260,7 +260,7 @@ async function weather(req, res) {
                     {
                         "card": {
                             "title": "Weather Update",
-                            "subtitle": `The weather in ${cityName} is ${weather.weather[0].main} and ${weather.weather[0].description}`,
+                            "subtitle": `The weather in ${cityName} is ${weather.weather[0].main}(${weather.weather[0].description})`,
                             "imageUri": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuqgV7ULWjc32FYJQqOIyrWA-W8NP8qzkjiBkQnD4uVNdsRXziYw"
                         }
                     }
