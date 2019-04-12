@@ -88,15 +88,9 @@ async function humidity(req, res) {
                 "fulfillmentMessages": [
                     {
                     "card": {
-                      "title": "card title",
-                      "subtitle": "card text",
-                      "imageUri": "https://assistant.google.com/static/images/molecule/Molecule-Formation-stop.png",
-                      "buttons": [
-                        {
-                          "text": "button text",
-                          "postback": "https://assistant.google.com/"
-                        }
-                      ]
+                      "title": "Weather Update",
+                      "subtitle": "From Weather Chatbot",
+                      "imageUri": "http://weather.smh.com.au/styles/icons/fairfax/large/mostly_sunny.png?1480640735"
                     }
                   }
                 ]
@@ -145,8 +139,16 @@ async function rain(req, res) {
                         }
                     }
                 ],
-                fulfillmentText: `The rain in ${cityName} ${(weather.rain) ? "is" + weather.rain["1h"] + "mm" : " is clear"} !`
-
+                fulfillmentText: `The rain in ${cityName} ${(weather.rain) ? "is" + weather.rain["1h"] + "mm" : " is clear"} !`,
+                "fulfillmentMessages": [
+                    {
+                    "card": {
+                      "title": "Weather Update",
+                      "subtitle": "From Weather Chatbot",
+                      "imageUri": "http://weather.smh.com.au/styles/icons/fairfax/large/possible_shower.png?1480640737"
+                    }
+                  }
+                ]
             })
             return
         }
