@@ -254,8 +254,62 @@ async function weather(req, res) {
                     {
                         "card": {
                             "title": "Weather Update",
-                            "subtitle": `The temperature in ${cityName} is ${weather.main.temp}°C !`,
+                            "subtitle": `The weather in ${cityName} is ${weather.weather[0].main} and ${weather.weather[0].description}`,
                             "imageUri": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuqgV7ULWjc32FYJQqOIyrWA-W8NP8qzkjiBkQnD4uVNdsRXziYw"
+                        }
+                    }
+                ]
+            })
+            return
+        }
+    })
+}
+
+
+async function wind(req, res) {
+    console.log("context are: ", req.body.queryResult.outputContexts)
+    var cityName;
+    var abcContext = getContext(req.body.queryResult.outputContexts, "abc")
+    if (req.body.queryResult.parameters.city) {
+        cityName = req.body.queryResult.parameters.city
+    }
+    else if (abcContext.parameters.abccity) {
+        cityName = abcContext.parameters.abccity
+    }
+    else {
+        res.send({
+            fulfillmentText: `Please enter the city name`
+        })
+        return
+    }
+    var session = req.body.session
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`
+    await rq(url, function (err, _res, body) {
+        let weather = JSON.parse(body);
+        console.log("weather is: ", weather)
+        if (err) {
+            console.log('error is:', err);
+            res.send({
+                fulfillmentText: `error while calling api`
+            })
+        } else {
+            res.send({
+                outputContexts: [
+                    {
+                        "name": `${session}/contexts/abc`,
+                        "lifespanCount": 5,
+                        "parameters": {
+                            "abccity": cityName
+                        }
+                    }
+                ],
+                fulfillmentText: `The wind speed in ${cityName} is ${weather.wind.speed}m/s and the direction is ${weather.wind.deg}degrees !`,
+                "fulfillmentMessages": [
+                    {
+                        "card": {
+                            "title": "Weather Update",
+                            "subtitle": `The wind speed in ${cityName} is ${weather.wind.speed}m/s and the direction is ${weather.wind.deg}degrees !`,
+                            "imageUri": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpItHWtCzBe7XloA1s2uD66uY3iMRNlvNFO5Y66_Pn6VWMc94O"
                         }
                     }
                 ]
