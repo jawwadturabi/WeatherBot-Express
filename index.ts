@@ -92,7 +92,7 @@ async function humidity(req, res) {
                     "card": {
                       "title": "Weather Update",
                       "subtitle": `The humidity in ${cityName} is ${weather.main.humidity}% `,
-                      "imageUri": "http://weather.smh.com.au/styles/icons/fairfax/large/mostly_sunny.png?1480640735"
+                      "imageUri": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwFfMsIQfjNUeY2QlP7bh9rT2HpXWwHQkRm_pv73oC7AePtidMkA"
                     }
                   }
                 ]
@@ -141,12 +141,12 @@ async function rain(req, res) {
                         }
                     }
                 ],
-                fulfillmentText: `The rain in ${cityName} ${(weather.rain) ? "is" + weather.rain["1h"] + "mm" : " is clear"} !`,
+                fulfillmentText: `${(weather.rain) ? `The rain is not expected in ${cityName}` :"Rain is" + weather.rain["1h"] + "mm" } !`,
                 "fulfillmentMessages": [
                     {
                     "card": {
                       "title": "Weather Update",
-                      "subtitle": "From Weather Chatbot",
+                      "subtitle": `${(weather.rain) ? `The rain is not expected in ${cityName}` :"Rain is" + weather.rain["1h"] + "mm" } !`,
                       "imageUri": "http://weather.smh.com.au/styles/icons/fairfax/large/possible_shower.png?1480640737"
                     }
                   }
@@ -195,8 +195,16 @@ async function temp(req, res) {
                         }
                     }
                 ],
-                fulfillmentText: `The temperature in ${cityName} is ${weather.main.temp}°C !`
-
+                fulfillmentText: `The temperature in ${cityName} is ${weather.main.temp}°C !`,
+                "fulfillmentMessages": [
+                    {
+                    "card": {
+                      "title": "Weather Update",
+                      "subtitle": `The temperature in ${cityName} is ${weather.main.temp}°C !`,
+                      "imageUri": "http://weather.smh.com.au/styles/icons/fairfax/large/mostly_sunny.png?1480640735"
+                    }
+                  }
+                ]
             })
             return
         }
@@ -241,7 +249,7 @@ async function weather(req, res) {
                         }
                     }
                 ],
-                fulfillmentText: `The weather in ${cityName} is ${weather.weather.main} and ${weather.weather.description} !`
+                fulfillmentText: `The weather in ${cityName} is ${weather.weather[0]} and ${weather.weather[1]} !`
 
             })
             return
