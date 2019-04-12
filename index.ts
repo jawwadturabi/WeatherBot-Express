@@ -255,7 +255,7 @@ async function weather(req, res) {
                         }
                     }
                 ],
-                fulfillmentText: `The weather in ${cityName} is ${weather.weather[0].main} and ${weather.weather[0].description} !`,
+                fulfillmentText: `The weather in ${cityName} is ${weather.weather[0].main}(${weather.weather[0].description}) !`,
                 "fulfillmentMessages": [
                     {
                         "card": {
@@ -314,7 +314,7 @@ async function wind(req, res) {
                     {
                         "card": {
                             "title": "Weather Update",
-                            "subtitle": `The wind speed in ${cityName} is ${weather.wind.speed}m/s and the direction is ${weather.wind.deg}degrees !`,
+                            "subtitle": `The wind speed in ${cityName} is ${weather.wind.speed} m/s and the direction is ${weather.wind.deg} degrees !`,
                             "imageUri": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpItHWtCzBe7XloA1s2uD66uY3iMRNlvNFO5Y66_Pn6VWMc94O"
                         }
                     }
