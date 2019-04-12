@@ -141,12 +141,12 @@ async function rain(req, res) {
                         }
                     }
                 ],
-                fulfillmentText: `${(weather.rain) ? `The rain is not expected in ${cityName}` :"Rain is" + weather.rain["1h"] + "mm" } !`,
+                // fulfillmentText: `${(weather.rain) ? `The rain is not expected in ${cityName}` :"Rain is" + weather.rain["1h"] + "mm" } !`,
                 "fulfillmentMessages": [
                     {
                     "card": {
                       "title": "Weather Update",
-                      "subtitle": `${(weather.rain) ? `The rain is not expected in ${cityName}` :"Rain is" + weather.rain["1h"] + "mm" } !`,
+                      "subtitle": `${(weather.rain) ? `The rain is not expected in ${cityName}` :"Rain is" + weather.rain["1h"] + "mm"!}`,
                       "imageUri": "http://weather.smh.com.au/styles/icons/fairfax/large/possible_shower.png?1480640737"
                     }
                   }
