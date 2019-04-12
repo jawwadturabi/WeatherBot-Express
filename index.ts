@@ -146,9 +146,9 @@ async function rain(req, res) {
                     {
                     "card": {
                       "title": "Weather Update",
-                      "subtitle": `${(weather.rain) ? `The rain not expected in ${cityName}` :"Rain is" + weather.rain["1h"] + "mm"!}`,
+                      "subtitle": (!(weather.rain)) ? "The rain not expected in" + cityName :"Rain is" + weather.rain["1h"] + "mm"!,
                       "imageUri": "http://weather.smh.com.au/styles/icons/fairfax/large/possible_shower.png?1480640737"
-                    }
+                    },
                   }
                 ]
             })
