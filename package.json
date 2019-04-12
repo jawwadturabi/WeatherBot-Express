@@ -13,7 +13,6 @@
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "heroku": "^7.22.8",
-    "request": "^2.88.0",
-    "request-promise": "^4.2.4"
+    "request": "^2.88.0"
   }
 }

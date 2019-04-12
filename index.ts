@@ -3,13 +3,11 @@ var apiKey = '4970e4f266675063af77ad454f45ebd6';
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express().use(bodyParser.json());
-var rp = require('request-promise');
 process.env.DEBUG = "dialogflow:debug"
 
 app.post("/webhook", function (request, response, next) {
 
     var intent = request.body.queryResult.intent.displayName
-    var cityName = request.body.queryResult.parameters.city
     switch (intent) {
         case 'Default Welcome Intent':
 
@@ -59,7 +57,7 @@ async function humidity(req, res) {
     else if (abcContext.parameters.abccity) {
         cityName = abcContext.parameters.abccity
     }
-    else {
+    else if(!req.body.queryResult.parameters.city && abcContext.parameters.abccity) {
         res.send({
             fulfillmentText: `Please enter the city name`
         })
