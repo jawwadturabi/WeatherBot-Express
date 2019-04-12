@@ -62,7 +62,7 @@ async function humidity(req, res) {
         res.send({
             fulfillmentText: `Please enter the city name`
         })
-    return
+        return
     }
 
     var session = req.body.session
@@ -89,12 +89,12 @@ async function humidity(req, res) {
                 fulfillmentText: `The humidity in ${cityName} is ${weather.main.humidity}% !`,
                 "fulfillmentMessages": [
                     {
-                    "card": {
-                      "title": "Weather Update",
-                      "subtitle": `The humidity in ${cityName} is ${weather.main.humidity}% `,
-                      "imageUri": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwFfMsIQfjNUeY2QlP7bh9rT2HpXWwHQkRm_pv73oC7AePtidMkA"
+                        "card": {
+                            "title": "Weather Update",
+                            "subtitle": `The humidity in ${cityName} is ${weather.main.humidity}% `,
+                            "imageUri": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwFfMsIQfjNUeY2QlP7bh9rT2HpXWwHQkRm_pv73oC7AePtidMkA"
+                        }
                     }
-                  }
                 ]
             })
             return
@@ -144,12 +144,12 @@ async function rain(req, res) {
                 // fulfillmentText: `${(weather.rain) ? `The rain is not expected in ${cityName}` :"Rain is" + weather.rain["1h"] + "mm" } !`,
                 "fulfillmentMessages": [
                     {
-                    "card": {
-                      "title": "Weather Update",
-                      "subtitle": (!(weather.rain)) ? "The rain is not expected in " + cityName :"The rainfall in Last 3 hours is " + weather.rain["3h"] + "mm",
-                      "imageUri": "http://weather.smh.com.au/styles/icons/fairfax/large/possible_shower.png?1480640737"
-                    },
-                  }
+                        "card": {
+                            "title": "Weather Update",
+                            "subtitle": (!(weather.rain)) ? "The rain is not expected in " + cityName : "The rainfall in Last 3 hours is " + weather.rain["3h"] + "mm",
+                            "imageUri": "http://weather.smh.com.au/styles/icons/fairfax/large/possible_shower.png?1480640737"
+                        },
+                    }
                 ]
             })
             return
@@ -198,12 +198,12 @@ async function temp(req, res) {
                 fulfillmentText: `The temperature in ${cityName} is ${weather.main.temp}°C !`,
                 "fulfillmentMessages": [
                     {
-                    "card": {
-                      "title": "Weather Update",
-                      "subtitle": `The temperature in ${cityName} is ${weather.main.temp}°C !`,
-                      "imageUri": "http://weather.smh.com.au/styles/icons/fairfax/large/mostly_sunny.png?1480640735"
+                        "card": {
+                            "title": "Weather Update",
+                            "subtitle": `The temperature in ${cityName} is ${weather.main.temp}°C !`,
+                            "imageUri": "http://weather.smh.com.au/styles/icons/fairfax/large/mostly_sunny.png?1480640735"
+                        }
                     }
-                  }
                 ]
             })
             return
@@ -249,8 +249,16 @@ async function weather(req, res) {
                         }
                     }
                 ],
-                fulfillmentText: `The weather in ${cityName} is ${weather.weather[0].main} and ${weather.weather[0].description} !`
-
+                fulfillmentText: `The weather in ${cityName} is ${weather.weather[0].main} and ${weather.weather[0].description} !`,
+                "fulfillmentMessages": [
+                    {
+                        "card": {
+                            "title": "Weather Update",
+                            "subtitle": `The temperature in ${cityName} is ${weather.main.temp}°C !`,
+                            "imageUri": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuqgV7ULWjc32FYJQqOIyrWA-W8NP8qzkjiBkQnD4uVNdsRXziYw"
+                        }
+                    }
+                ]
             })
             return
         }
