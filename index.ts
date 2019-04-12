@@ -62,6 +62,7 @@ async function humidity(req, res) {
         res.send({
             fulfillmentText: `Please enter the city name`
         })
+    return
     }
     cityName = req.body.queryResult.parameters.city
     var session = req.body.session
@@ -85,7 +86,7 @@ async function humidity(req, res) {
                         }
                     }
                 ],
-                fulfillmentText: `The humidity in ${cityName} is ${weather.main.humidity}% !`,
+                fulfillmentText: `The humidity in ${cityName} is ${weather.main}% !`,
                 "fulfillmentMessages": [
                     {
                     "card": {
