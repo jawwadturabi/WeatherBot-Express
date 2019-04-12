@@ -86,12 +86,12 @@ async function humidity(req, res) {
                         }
                     }
                 ],
-                fulfillmentText: `The humidity in ${cityName} is ${weather.main}% !`,
+                fulfillmentText: `The humidity in ${cityName} is ${weather.main.humidity}% !`,
                 "fulfillmentMessages": [
                     {
                     "card": {
                       "title": "Weather Update",
-                      "subtitle": "From Weather Chatbot",
+                      "subtitle": `The humidity in ${cityName} is ${weather.main.humidity}% `,
                       "imageUri": "http://weather.smh.com.au/styles/icons/fairfax/large/mostly_sunny.png?1480640735"
                     }
                   }
