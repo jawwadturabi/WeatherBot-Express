@@ -57,7 +57,7 @@ async function humidity(req, res) {
     else if (abcContext.parameters.abccity) {
         cityName = abcContext.parameters.abccity
     }
-    else if(!req.body.queryResult.parameters.city) {
+    else {
         console.log("not available")
         res.send({
             fulfillmentText: `Please enter the city name`
