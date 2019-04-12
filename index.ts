@@ -57,11 +57,11 @@ async function humidity(req, res) {
     else if (abcContext.parameters.abccity) {
         cityName = abcContext.parameters.abccity
     }
-    else if(!req.body.queryResult.parameters.city && abcContext.parameters.abccity) {
+    else if(!req.body.queryResult.parameters.city && !abcContext.parameters.abccity) {
+        console.log("not available")
         res.send({
             fulfillmentText: `Please enter the city name`
         })
-        return
     }
     var session = req.body.session
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`
