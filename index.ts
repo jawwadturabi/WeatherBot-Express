@@ -64,7 +64,7 @@ async function humidity(req, res) {
         })
     return
     }
-    cityName = req.body.queryResult.parameters.city
+
     var session = req.body.session
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`
     await rq(url, function (err, _res, body) {
