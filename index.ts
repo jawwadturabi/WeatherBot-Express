@@ -5,6 +5,12 @@ const bodyParser = require("body-parser");
 const app = express().use(bodyParser.json());
 process.env.DEBUG = "dialogflow:debug"
 
+app.get("/webhook/:apiKey/:cityname",(req,res)=>{
+    console.log("request is : ",req)
+    var intent = req.params
+    console.log("request is : ",intent)
+})
+
 app.post("/webhook", function (request, response, next) {
     console.log("request is : ",request)
     var intent = request.body
