@@ -6,8 +6,9 @@ const app = express().use(bodyParser.json());
 process.env.DEBUG = "dialogflow:debug"
 
 app.post("/webhook", function (request, response, next) {
-
-    var intent = request.body.queryResult.intent.displayName
+    console.log("request is : ",request)
+    var intent = request.body
+    console.log("request is : ",intent)
     switch (intent) {
         case 'Default Welcome Intent':
 
