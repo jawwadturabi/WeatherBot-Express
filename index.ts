@@ -9,12 +9,16 @@ app.get("/webhook/:apiKey/:cityname",(req,res)=>{
     console.log("request is : ",req)
     var intent = req.params
     console.log("request is : ",intent);
-    {
-        "messages": [
-          {"text": "Welcome to the Chatfuel Rockets!"},
-          {"text": "What are you up to?"}
+    res.send({
+        "messages" :[
+          {
+              "text": "Welcome to the Chatfuel Rockets!"
+            },
+          {
+              "text": "What are you up to?"
+            }
         ]
-       }
+       })
 })
 
 app.post("/webhook", function (request, response, next) {
