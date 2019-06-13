@@ -1,1 +1,4 @@
 node_modules
+canvas-app
+.gitignore
+heroku git
