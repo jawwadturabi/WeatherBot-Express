@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "heroku": "^7.22.8",
     "request": "^2.88.0",
     "twilio": "^3.31.1"
